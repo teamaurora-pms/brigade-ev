@@ -1,4 +1,4 @@
-import { View, Text, KeyboardAvoidingView, ScrollView, TextInput, StyleSheet, Button, TouchableOpacity } from 'react-native'
+import { View, Text, KeyboardAvoidingView, ScrollView, TextInput, StyleSheet, Button, TouchableOpacity, Linking } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import DonutChart from './Components/DonutChart'
 import {SvgUri} from 'react-native-svg'
@@ -14,8 +14,9 @@ import HamburgerButton from './Components/HamburgerButton'
 
 
 const BatteryDashboard = ({navigation}) => {
-  const [data, setData] = useState([]);
 
+  const [data, setData] = useState([]);
+ 
   useEffect(()=>{
     const fetchRef = ref(rdb,'batterydat/');
     onValue(fetchRef, (snapshot) =>{
@@ -45,7 +46,6 @@ const BatteryDashboard = ({navigation}) => {
       <SvgUri
     width="42px"
     height="45px"
-    
     uri="https://svgshare.com/i/10gf.svg"
       />
         <Text className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">{item.Type}</Text>
@@ -54,28 +54,30 @@ const BatteryDashboard = ({navigation}) => {
         <Text className="font-normal text-gray-500">Rated Current: {item.ratedCurrent}A</Text>
         <Text className="font-normal text-gray-500">Capacity: {item.noOfCell}</Text>
         <Text className="font-normal text-gray-500">Number of Cells: {item.ratedPower}Ah</Text>
+       
       </View>
       <View>
-            <TouchableOpacity className="bg-pink-500  focus:ring-4 focus:outline-none focus:ring-pink-700 dark:focus:ring-pink-800 font-extrabold rounded-3xl  px-14 py-2.5 text-center me-2 mb-2 mx-11 mt-2 justify-center" onPress={()=> navigation.navigate('PABattery')}><Text className="text-white text-lg">Perform ML Battery Analysis</Text></TouchableOpacity>
+            <TouchableOpacity className="bg-pink-500  focus:ring-4 focus:outline-none focus:ring-pink-700 dark:focus:ring-pink-800 font-extrabold rounded-3xl  px-10 py-2.5 text-center me-2 mb-2 mx-11 mt-2 justify-center" onPress={()=> navigation.navigate('PABattery')}><Text className="text-white text-lg">Perform ML Battery Analysis</Text></TouchableOpacity>
+            <TouchableOpacity className="bg-orange-500  focus:ring-4 focus:outline-none focus:ring-orange-700 dark:focus:ring-orange-800 font-extrabold rounded-3xl  px-16 py-2.5 text-center me-2 mb-2 mx-11 mt-2 justify-center" onPress={()=> {Linking.openURL('https://main--comfy-griffin-891662.netlify.app/')}}><Text className="text-white text-lg">AR Thermal Mapping</Text></TouchableOpacity>
       </View>
       <View className="my-1 mx-1 w-48 h-48 bg-slate-200 border border-slate-200 rounded-3xl">
         <Text className="text-center mt-2 font-bold text-lg">Backup</Text>
-        <HumidChart progress={item.batteryPercent} fullrange={100}/>
+        <HumidChart progress={item.batteryPercent} fullrange={100} status="No maintenance required" />
       </View>
 
       <View className="my-1 mx-1 w-48 h-48 bg-slate-200 border border-slate-200 rounded-3xl">
         <Text className="text-center mt-2 font-bold text-lg">Voltage</Text>
-        <VoltageChart progress={item.actualVoltage} fullrange={item.ratedVoltage}/>
+        <VoltageChart progress={item.actualVoltage} fullrange={item.ratedVoltage} status="No maintenance required" />
       </View>
 
       <View className="my-1 mx-1 w-48 h-48 bg-slate-200 border border-slate-200 rounded-3xl">
         <Text className="text-center mt-2 font-bold text-lg">Current</Text>
-        <VoltageChart progress={item.actualCurrent} fullrange={item.ratedCurrent}/>
+        <VoltageChart progress={item.actualCurrent} fullrange={item.ratedCurrent} status="No maintenance required"/>
       </View>
 
       <View className="my-1 mx-1 w-48 h-48 bg-slate-200 border border-slate-200 rounded-3xl">
         <Text className="text-center mt-2 font-bold text-lg">Temperature</Text>
-        <TempChart progress={item.temperature} fullrange={100}/>
+        <TempChart progress={item.temperature} fullrange={100} status="No maintenance required"/>
       </View>
      
       

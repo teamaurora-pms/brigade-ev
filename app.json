@@ -1,19 +1,20 @@
 {
   "expo": {
-    "name": "task-management-system",
-    "slug": "task-management-system",
+    "name": "Brigade-EV",
+    "slug": "aurora-mms",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/bondap.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/bondap.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
+    
     "ios": {
       "supportsTablet": true
     },
@@ -21,10 +22,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.aurorateam.smartmotormanager"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fde38c3d-ae83-40fc-97ac-fca6b5925b21"
+      }
     }
   }
 }

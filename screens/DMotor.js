@@ -10,10 +10,8 @@ const DMotor = () => {
   const [isRotating, setIsRotating] = useState(false)
   const [OrbitControls, events] = useControls()
   return (
-    <View className="w-full h-screen relative" {...events}> 
-    <View className="mt-5">
-      <HamburgerButton/>
-    </View>
+  
+    <View className="w-full h-screen relative -my-24" {...events}> 
         <Canvas
         className={`w-full h-screen bg-transparent ${isRotating ? 'cursor-grabbing' : 'cursor-grab'}`}
         camera={{near: 0.1, far:1000}}
